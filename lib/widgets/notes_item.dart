@@ -28,7 +28,7 @@ class NoteItem extends StatelessWidget {
                 child: Text(
                   'Build good apps with tharwat Samy ',
                   style: TextStyle(
-                      color: Colors.black.withOpacity(0.6), fontSize: 20),
+                      color: Colors.black.withOpacity(0.6), fontSize: 18),
                 ),
               ),
               trailing: Icon(
