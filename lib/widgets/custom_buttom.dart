@@ -8,21 +8,20 @@ class customButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: KprimaryColor),
-                child: Center(
-                  child: Text(
-                    "Add",
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              );
+      width: MediaQuery.of(context).size.width,
+      height: 50,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20), color: kPrimaryColor),
+      child: Center(
+        child: Text(
+          "Add",
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            color: Colors.black,
+            fontSize: 20,
+          ),
+        ),
+      ),
+    );
   }
 }
