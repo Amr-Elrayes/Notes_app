@@ -5,6 +5,10 @@ sealed class NotesState {}
 
 final class NotesInitial extends NotesState {}
 
+class NotesLoaded extends NotesState {
+  final List<NoteModel> notes;
 
+  NotesLoaded(this.notes);
+}
 
 

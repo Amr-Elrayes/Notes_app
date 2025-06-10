@@ -6,7 +6,6 @@ import 'package:notes_app/models/note_model.dart';
 import '../../constants.dart';
 
 part 'notes_state.dart';
-
 class NotesCubit extends Cubit<NotesState> {
   NotesCubit() : super(NotesInitial());
 
@@ -17,7 +16,7 @@ class NotesCubit extends Cubit<NotesState> {
 
   var notesBox = Hive.box<NoteModel>(kNotesBox);
   notes = notesBox.values.toList();
-
+    emit(NotesLoaded(notes!));
 
   }
   }

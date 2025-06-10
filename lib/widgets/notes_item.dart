@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
+import 'package:intl/intl.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
-
+  const NoteItem({super.key, required this.note});
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,7 +21,7 @@ class NoteItem extends StatelessWidget {
         },
         child: Material(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.red,
+          color: Color(note.color),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -27,7 +29,7 @@ class NoteItem extends StatelessWidget {
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 17, vertical: 18),
                 title: Text(
-                  'Flutter Tips',
+                  note.title,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 26,
@@ -36,7 +38,7 @@ class NoteItem extends StatelessWidget {
                 subtitle: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Text(
-                    'Build good apps with tharwat Samy ',
+                    note.subtitle,
                     style: TextStyle(
                         color: Colors.black.withOpacity(0.6), fontSize: 18),
                   ),
@@ -50,7 +52,8 @@ class NoteItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 20, bottom: 20),
                 child: Text(
-                  'May 21 , 2025',
+                  DateFormat('EEE, MMM d - kk:mm')
+                      .format(DateTime.parse(note.date)),
                   style: TextStyle(
                       color: Colors.black.withOpacity(0.7), fontSize: 14),
                 ),
