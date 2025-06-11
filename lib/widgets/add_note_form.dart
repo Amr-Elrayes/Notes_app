@@ -64,7 +64,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         color: Colors.blue.value);
                     BlocProvider.of<AddNoteCubit>(context).AddNote(noteModel);
                     ShowSnackBar(
-                        context, 'Note Added Successfully', Colors.green);
+                        context, 'Note Added Successfully', Colors.green , Colors.white);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});

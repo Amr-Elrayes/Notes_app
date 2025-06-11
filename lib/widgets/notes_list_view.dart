@@ -17,6 +17,7 @@ class NotesListview extends StatelessWidget {
           itemCount: notes.length,
           itemBuilder: (context, index) {
             return NoteItem(
+              key: ValueKey(notes[index].key),
               note: notes[index],
             );
           },
