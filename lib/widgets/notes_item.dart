@@ -5,6 +5,8 @@ import 'package:notes_app/views/edit_note_view.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../helper/show_snakbar.dart';
+
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
   final NoteModel note;
@@ -17,7 +19,9 @@ class NoteItem extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) {
-              return EditNoteView();
+              return EditNoteView(
+                note: note,
+              );
             }),
           );
         },
@@ -49,6 +53,7 @@ class NoteItem extends StatelessWidget {
                   onPressed: () {
                     note.delete();
                     BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                    ShowSnackBar(context, 'Note Deleted Successfully' , Colors.red);
                   },
                   icon: Icon(
                     Icons.delete,

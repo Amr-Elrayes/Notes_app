@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/Cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_app/helper/show_Snakbar.dart';
+import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/custom_appbar.dart';
-import 'package:notes_app/widgets/custom_icon.dart';
 import 'package:notes_app/widgets/custom_text_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EditNoteViewBody extends StatelessWidget {
-  const EditNoteViewBody({super.key});
+class EditNoteViewBody extends StatefulWidget {
+  const EditNoteViewBody({super.key, required this.note});
+  final NoteModel note;
 
+  @override
+  State<EditNoteViewBody> createState() => _EditNoteViewBodyState();
+}
+
+class _EditNoteViewBodyState extends State<EditNoteViewBody> {
+  String? subtitle, title;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,22 +23,34 @@ class EditNoteViewBody extends StatelessWidget {
       child: Column(
         children: [
           CustomAppbar(
+            onPressed: () {
+              widget.note.title = title ?? widget.note.title;
+              widget.note.subtitle = subtitle ?? widget.note.subtitle;
+              widget.note.save();
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+              Navigator.pop(context);
+              ShowSnackBar(context, 'Note Edited Successfully',
+                  const Color.fromARGB(255, 176, 158, 1));
+            },
             title: "Edit Note",
-            icon: CustomIcon(
-              icon: Icons.check,
-            ),
+            icon: Icons.check,
           ),
           SizedBox(
             height: 40,
           ),
           CustomTextField(
-            hintText: "Title"
-            ),
+              onChanged: (value) {
+                title = value;
+              },
+              hintText: widget.note.title),
           SizedBox(
             height: 20,
           ),
           CustomTextField(
-            hintText: "Content",
+            onChanged: (value) {
+              subtitle = value;
+            },
+            hintText: widget.note.subtitle,
             maxlins: 5,
           )
         ],
