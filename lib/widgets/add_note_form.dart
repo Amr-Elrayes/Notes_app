@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/Cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import '../helper/colors_list_view.dart';
 import '../helper/show_snakbar.dart';
 import 'custom_buttom.dart';
 import 'custom_text_field.dart';
@@ -45,6 +46,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
           SizedBox(
             height: 25,
           ),
+          ColorsListView(),
+          SizedBox(
+            height: 25,
+          ),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return customButton(
@@ -58,7 +63,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         date: DateTime.now().toString(),
                         color: Colors.blue.value);
                     BlocProvider.of<AddNoteCubit>(context).AddNote(noteModel);
-                    ShowSnackBar(context, 'Note Added Successfully' , Colors.green);
+                    ShowSnackBar(
+                        context, 'Note Added Successfully', Colors.green);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
@@ -75,3 +81,5 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
+
+
