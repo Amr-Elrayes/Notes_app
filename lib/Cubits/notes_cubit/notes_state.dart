@@ -11,4 +11,7 @@ class NotesLoaded extends NotesState {
   NotesLoaded(this.notes);
 }
 
+class NotesSuccess extends NotesState {
+  
+}
 
